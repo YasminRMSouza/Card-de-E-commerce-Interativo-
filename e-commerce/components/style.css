@@ -105,7 +105,7 @@ body {
 }
 
 /*  ===========================================
-          estilo da descrição do card
+            estilo da descrição do card
     =========================================== */
 
 /* dá um respiro interno (padding) e usa o flexbox para empilhar tudo com espaço entre eles */    
@@ -137,7 +137,7 @@ body {
 }
 
 /*  ===========================================
-          estilo dos seletores de tamanho
+            estilo dos seletores de tamanho
     =========================================== */
 
 /* espaçamento do bloco de tamanhos */
@@ -181,8 +181,14 @@ body {
     color: white;
 }
 
+.size-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
 /*  ===============================================
-          estilo dos seletores de quantidade
+            estilo dos seletores de quantidade
     =============================================== */
 
 /* organiza a linha final */
@@ -250,8 +256,103 @@ body {
     background-color: var(--primary-hover);
 }
 
+/*  ===============================
+            estilos do modal
+    =============================== */
+
+/* o fundo escurecido que cobre a tela toda */
+.modal-overlay {
+    position: fixed; /* fica fixo na tela, mesmo se rolar a página*/
+    top: 0;
+    left: 0;
+    width: 100vw; /* 100% da largura da tela */
+    height: 100vh; /* 100% da altura da tela */
+    background-color: rgba(0, 0, 0, 0.6); /* preto com 60% de transparência */
+    z-index: 1000; /* garante que fique por cima de tudo */
+
+    /* centraliza a caixa branca do modal no meio da tela */
+    display: none; /* começa escondido */
+    justify-content: center;
+    align-items: center;
+}
+
+/* a classe que o JavaScript vai adicionar para mostrar o modal */
+.modal-overlay.active {
+    display: flex;
+}
+
+/* a caixa branca com a mensagem */
+.modal-content {
+    background-color: var(--bg-color);
+    padding: 1rem;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 300px;
+    height: 100%;
+    max-height: 300px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s esae-out; /* um caminho extra; @keyframe*/
+}
+
+.modal-title {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.modal-message {
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+/* container dos dois botões */
+.modal-actions {
+    display: flex;
+    gap: 1rem; /* espaço entre os botões */
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+/* botão principal (preenchido) */
+.modal-btn-primary, .modal-btn-secondary {
+    border: 2px solid var(--primary-color);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1 /* faz os dois botões terem o mesmo tamanho */
+}
+
+.modal-btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.modal-btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.modal-btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+}
+
+.modal-btn-secondary:hover {
+    background-color: #f0f4ff;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+
 /*  =======================
-          media query
+            media query
     ======================= */
 
 /* regras aplicadas APENAS em telas com 400px de largura ou menos*/
@@ -288,5 +389,9 @@ body {
 
     .add-to-cart-btn {
         flex: none;
+    }
+
+    .modal-actions {
+        flex-direction: column;
     }
 }
